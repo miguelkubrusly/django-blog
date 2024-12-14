@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
 posts = [
   {"id":0,
@@ -25,12 +25,13 @@ def home(request):
     """
   return HttpResponse(html)
 
-def post (request, id):
-  for post in posts:
-    if post["id"]==id:
-      current_post = post  
-  html = f"""
+def post_detail (request, id):
+  current_post = next((p for p in posts if p["id"]==id), None) 
+  if current_post:
+    html = f"""
     <h1>{current_post["title"]}</h1>
     <p>{current_post["content"]}</p>
-  """
-  return HttpResponse(html)
+    """
+    return HttpResponse(html)
+  else: 
+    return HttpResponseNotFound("Post not found 😢")

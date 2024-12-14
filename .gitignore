@@ -1,2 +1,4 @@
 .vscode/settings.json
 __pycache__/
+posts/__pycache__/urls.cpython-312.pyc
+posts/__pycache__/views.cpython-312.pyc
