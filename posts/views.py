@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+
 
 posts = [
   {"id":0,
@@ -35,3 +36,6 @@ def post_detail (request, id):
     return HttpResponse(html)
   else: 
     return HttpResponseNotFound("Post not found 😢")
+
+def redirect_id(request, id):
+  return HttpResponseRedirect(f"/post/{id}/")
