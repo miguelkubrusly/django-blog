@@ -3,18 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome, {{name}}!</title>
+    <title>Welcome, {{ name }}!</title>
   </head>
   <body>
-    {%if posts %}
-    <h1>All Posts</h1>
-    {%for p in posts%}
-    <a href="../{{p.id}}">
-      <h2>{{p.title}}</h2>
-    </a>
-    <p>{{p.content}}</p>
-    {%endfor%} {%else%}
-    <h5>No posts available yet 🥲</h5>
-    {%endif%}
+    {% for p in posts %}
+      {% if forloop.counter == 1 %}
+        <h1>All Posts</h1>
+      {% endif %}
+      <a href="../{{ p.id }}"><h2><small>{{ forloop.counter }} -</small>{{ p.title }}</h2></a>
+      <p>{{ p.content }}</p>
+    {% empty %}
+      <h5>No post available yet 🥲</h5>
+    {% endfor %}
   </body>
 </html>

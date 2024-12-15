@@ -14,6 +14,9 @@ POSTS = [
     "title": "Nisi pariatur nostrud amet fugiat ea.",
   "content": "Proident ad nisi ipsum reprehenderit ullamco excepteur cupidatat esse ex in. Cillum velit voluptate do laboris commodo ullamco minim ipsum aliquip nostrud commodo tempor laborum. Tempor do voluptate et nostrud sint non nisi. Elit nulla ipsum sint ea culpa duis. Ipsum irure sunt laboris est id enim est ea commodo id. Cillum esse voluptate ipsum culpa exercitation nostrud."}
 ]
+
+# POSTS = []
+
 # Create your views here.
 def home(request):
   return render(request, "posts/home.html", {"name":"Miguel","posts":POSTS})
