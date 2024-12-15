@@ -17,16 +17,7 @@ POSTS = [
 
 # Create your views here.
 def home(request):
-  html = ""
-  for post in POSTS:
-    url = reverse("posts", args=[post['id']])
-    html += f"""
-    <a href="/post/{post['id']}/">
-      <h2>{post["title"]}</h2>
-    </a>
-    <hr>
-    """
-  return HttpResponse(html)
+  return render(request, "posts/home.html", {"name":"Miguel","posts":POSTS})
 
 def post_detail (request, id):
   current_post = next((p for p in POSTS if p["id"]==id), None) 
