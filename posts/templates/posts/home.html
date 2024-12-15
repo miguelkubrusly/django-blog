@@ -10,7 +10,7 @@
       {% if forloop.counter == 1 %}
         <h1>All Posts</h1>
       {% endif %}
-      <a href="../{{ p.id }}"><h2><small>{{ forloop.counter }} -</small>{{ p.title }}</h2></a>
+      <a href="{% url 'post_detail' p.id %}"><h2><small>{{ forloop.counter }} -</small>{{ p.title }}</h2></a>
       <p>{{ p.content }}</p>
     {% empty %}
       <h5>No post available yet 🥲</h5>

@@ -33,6 +33,6 @@ def post_detail (request, id):
     return HttpResponseNotFound("Post not available 🥲")
 
 def redirect_id(request, id):
-  url = reverse("posts", args=[id])
+  url = reverse("post_detail", args=[id])
   print(url)
   return HttpResponseRedirect(url)
