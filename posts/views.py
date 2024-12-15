@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 
-posts = [
+POSTS = [
   {"id":0,
     "title": "Deserunt est et qui occaecat nisi non ullamco officia.",
   "content": "Ut eiusmod laborum culpa proident minim culpa amet esse ut culpa tempor veniam. Consequat quis occaecat voluptate laboris adipisicing nulla consequat sint ipsum. In officia amet consectetur ipsum do irure laborum labore do sint cillum amet."},
@@ -17,7 +18,8 @@ posts = [
 # Create your views here.
 def home(request):
   html = ""
-  for post in posts:
+  for post in POSTS:
+    url = reverse("posts", args=[post['id']])
     html += f"""
     <a href="/post/{post['id']}/">
       <h2>{post["title"]}</h2>
@@ -27,7 +29,7 @@ def home(request):
   return HttpResponse(html)
 
 def post_detail (request, id):
-  current_post = next((p for p in posts if p["id"]==id), None) 
+  current_post = next((p for p in POSTS if p["id"]==id), None) 
   if current_post:
     html = f"""
     <h1>{current_post["title"]}</h1>
@@ -35,7 +37,9 @@ def post_detail (request, id):
     """
     return HttpResponse(html)
   else: 
-    return HttpResponseNotFound("Post not found 😢")
+    return HttpResponseNotFound("Post not available 🥲")
 
 def redirect_id(request, id):
-  return HttpResponseRedirect(f"/post/{id}/")
+  url = reverse("posts", args=[id])
+  print(url)
+  return HttpResponseRedirect(url)
